@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+/* Deliberately dark-only — same aesthetic family as Linear/Vercel/Stripe/
+   Resend's marketing pages, which commit to one visual world rather than
+   supporting a light variant. A choice, not an omission. */
+:root {
+  --bg: #0a0a0b;
+  --bg-raised: #131315;
+  --bg-inset: #0e0e10;
+  --ink: #f5f4f1;
+  --ink-soft: #a3a09b;
+  --ink-faint: #706d69;
+  --line: #232226;
+  --line-soft: #1a1a1d;
+  --accent: #ff5b35;
+  --accent-ink: #180804;
+  --accent-soft: #2a140c;
+  --accent-2: #ffb27a;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-raised: var(--bg-raised);
+  --color-bg-inset: var(--bg-inset);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-faint: var(--ink-faint);
+  --color-line: var(--line);
+  --color-line-soft: var(--line-soft);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-2: var(--accent-2);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+}
+
+* {
+  border-color: var(--line);
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-feature-settings: "cv11", "ss01";
+}
+
+h1,
+h2,
+h3,
+h4,
+.font-display {
+  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+  text-wrap: balance;
+  letter-spacing: -0.02em;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
