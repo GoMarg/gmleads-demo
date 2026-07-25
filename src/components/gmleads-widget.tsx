@@ -22,6 +22,12 @@ export function GmLeadsWidget() {
   }
 
   return (
-    <Script src={WIDGET_URL} data-key={EMBED_KEY} strategy="afterInteractive" async />
+    <Script
+      src={WIDGET_URL}
+      data-key={EMBED_KEY}
+      data-accent-color="#3ddc84"
+      strategy="afterInteractive"
+      async
+    />
   );
 }

@@ -7,7 +7,6 @@ const LINKS = [
   { href: "/pricing", label: "Pricing" },
   { href: "/docs", label: "Docs" },
   { href: "/blog", label: "Blog" },
-  { href: "/#customers", label: "Customers" },
 ];
 
 export function Nav() {

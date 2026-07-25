@@ -17,15 +17,11 @@ const COLUMNS = [
     links: [
       { href: "/docs", label: "Documentation" },
       { href: "/blog", label: "Blog" },
-      { href: "/#faq", label: "FAQ" },
     ],
   },
   {
     title: "Company",
-    links: [
-      { href: "/#customers", label: "Customers" },
-      { href: "/#faq", label: "Support" },
-    ],
+    links: [{ href: "/docs", label: "Support" }],
   },
 ];
 
