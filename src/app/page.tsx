@@ -1,13 +1,11 @@
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { GmLeadsWidget } from "@/components/gmleads-widget";
+import { WidgetNudge } from "@/components/widget-nudge";
 import { Hero } from "@/components/sections/hero";
-import { IntegratesWith } from "@/components/sections/integrates-with";
-import { Problem } from "@/components/sections/problem";
-import { HowItWorks } from "@/components/sections/how-it-works";
-import { LiveDemo } from "@/components/sections/live-demo";
+import { CustomerLogos } from "@/components/sections/customer-logos";
 import { Features } from "@/components/sections/features";
-import { Pricing } from "@/components/sections/pricing";
+import { Testimonials } from "@/components/sections/testimonials";
 import { Faq } from "@/components/sections/faq";
 import { Cta } from "@/components/sections/cta";
 
@@ -17,17 +15,15 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
-        <IntegratesWith />
-        <Problem />
-        <HowItWorks />
-        <LiveDemo />
+        <CustomerLogos />
         <Features />
-        <Pricing />
+        <Testimonials />
         <Faq />
         <Cta />
       </main>
       <Footer />
       <GmLeadsWidget />
+      <WidgetNudge />
     </>
   );
 }

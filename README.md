@@ -1,8 +1,17 @@
 # gmleads-demo
 
-The public demo/marketing site for GmLeads — a single landing page whose
-centerpiece is the real, live GmLeads widget, talking to the real
-production backend. Nothing on this site is staged or mocked.
+A fictional B2B SaaS company — **Ashlar**, an issue tracker for
+engineering teams — with the real, live GmLeads widget installed on its
+site. Ashlar's branding, copy, product, pricing, docs, and blog are all
+invented for this repo; none of it describes GmLeads. The point is the
+opposite of a GmLeads marketing page: a visitor experiences the GmLeads
+widget exactly the way a real customer's end-users would encounter it on
+someone else's product — discovered in the corner of a page they came to
+for other reasons, not pitched at them.
+
+The widget itself is not staged. It's the real production widget script,
+pointed at a real production workspace, talking to the real backend.
+Nothing about the widget or its behavior is mocked.
 
 Separate from `gmleads-dashboard` deliberately — independent release
 cadence, no risk of demo changes affecting the actual product, and a
@@ -13,6 +22,20 @@ clean line between "internal tool" (dashboard) and "public face"
 
 Next.js 16 (App Router) / React 19 / Tailwind 4 / TypeScript — matches
 `gmleads-dashboard/web`'s stack for consistency.
+
+## Structure
+
+- `/` — Ashlar's homepage: hero, customer logos, features, testimonials,
+  FAQ, CTA.
+- `/pricing` — Free / Team / Enterprise tiers.
+- `/docs` — a real (if modest) documentation page for Ashlar's invented
+  product.
+- `/blog` — a few sample posts, written in Ashlar's own voice.
+
+All copy, logos, testimonials, and blog posts describe the fictional
+Ashlar product and its fictional customers — consistent internal
+fiction, not a claim about anything real. The one real thing on the
+site is the GmLeads widget in the corner.
 
 ## Local development
 
@@ -38,5 +61,8 @@ Vercel, same as `gmleads-dashboard`'s frontend.
 The widget on this page is the actual product, not a recording or a
 staged flow. A real visit here creates a real session, runs through the
 real identify → ICP scoring pipeline, and would trigger a real Slack
-alert if one were configured for this workspace. If something here ever
-looks fake, that's a bug, not a design choice.
+alert if one were configured for this workspace. Everything around the
+widget — Ashlar itself — is invented so the widget can be discovered the
+way a real end-user would discover it on a real customer's site, not
+presented as a feature of a GmLeads marketing page. If the widget's
+behavior here ever looks fake, that's a bug, not a design choice.

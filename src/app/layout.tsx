@@ -1,22 +1,27 @@
 import type { Metadata } from "next";
-import { Manrope, Inter } from "next/font/google";
+import { Sora, IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
 
-const manrope = Manrope({
+// Ashlar is a fictional company invented purely as a believable backdrop
+// for demonstrating GmLeads the way a real customer would experience it
+// — see README.md. Its own type identity, deliberately distinct from the
+// gmleads-demo site this repo replaced (Manrope/Inter, coral accent).
+const sora = Sora({
   variable: "--font-display",
   subsets: ["latin"],
   weight: ["500", "600", "700", "800"],
 });
 
-const inter = Inter({
+const plexSans = IBM_Plex_Sans({
   variable: "--font-body",
   subsets: ["latin"],
+  weight: ["400", "500", "600"],
 });
 
 export const metadata: Metadata = {
-  title: "GmLeads — Know who's on your site, before they leave",
+  title: "Ashlar — The workspace for teams who ship",
   description:
-    "GmLeads identifies the companies visiting your website, scores them against your ideal customer profile, and alerts your sales team in Slack — in real time.",
+    "Issue tracking, sprints, and release workflows built for engineering teams who'd rather be shipping than managing tickets.",
 };
 
 export default function RootLayout({
@@ -25,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${manrope.variable} ${inter.variable}`}>
+    <html lang="en" className={`${sora.variable} ${plexSans.variable}`}>
       <body className="min-h-full antialiased">{children}</body>
     </html>
   );

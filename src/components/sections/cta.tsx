@@ -15,25 +15,25 @@ export function Cta() {
             }}
           />
           <h2 className="mx-auto max-w-xl font-display text-3xl font-800 leading-tight md:text-5xl">
-            Ready to see who&apos;s really visiting your site?
+            Your team could be shipping on Ashlar by tomorrow morning.
           </h2>
           <p className="mx-auto mt-5 max-w-md text-ink-soft">
-            Scroll back up and click the widget yourself — or reach out and
-            we&apos;ll walk you through it live.
+            Free for teams under 10. No credit card, no sales call required
+            to get started.
           </p>
           <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
             <Link
-              href="#live-demo"
-              className="rounded-full bg-accent px-6 py-3 text-sm font-semibold text-accent-ink transition-transform hover:scale-[1.02]"
+              href="#features"
+              className="rounded-lg bg-accent px-6 py-3 text-sm font-semibold text-accent-ink transition-transform hover:scale-[1.02]"
             >
-              Try the live demo
+              Start for free
             </Link>
-            <a
-              href="mailto:hello@gomarg.com"
-              className="rounded-full border border-line px-6 py-3 text-sm font-semibold text-ink transition-colors hover:border-ink-faint"
+            <Link
+              href="/pricing"
+              className="rounded-lg border border-line px-6 py-3 text-sm font-semibold text-ink transition-colors hover:border-ink-faint"
             >
-              Talk to us
-            </a>
+              See pricing
+            </Link>
           </div>
         </div>
       </Container>

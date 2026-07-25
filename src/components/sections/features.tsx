@@ -3,46 +3,34 @@ import { Eyebrow } from "../eyebrow";
 
 const FEATURES = [
   {
-    title: "Company identification",
-    body: "Resolve anonymous visitors to real companies from their IP — no cookies, no forms, nothing the visitor has to do.",
-    icon: (
-      <path d="M12 2 3 7v6c0 5 4 9 9 9s9-4 9-9V7l-9-5Z" />
-    ),
+    title: "Issue tracking that stays out of your way",
+    body: "Create, triage, and close issues in seconds. Keyboard-first, no five-click forms.",
+    icon: <path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />,
   },
   {
-    title: "ICP scoring",
-    body: "Every identified company is scored against your ideal-customer profile the moment they land — industry, size, and keywords you define.",
+    title: "Sprints that plan themselves",
+    body: "Cycle planning pulls from your backlog automatically, weighted by priority and team capacity.",
+    icon: <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />,
+  },
+  {
+    title: "Roadmaps stakeholders actually read",
+    body: "A live, filterable timeline — not a quarterly slide deck that's out of date by Tuesday.",
     icon: <path d="M3 3v18h18M7 15l4-6 3 3 5-8" />,
   },
   {
-    title: "Real-time Slack alerts",
-    body: "Qualified leads hit your team's Slack channel in seconds, with company, score, and page context — not a generic ping.",
-    icon: <path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9 M13.73 21a2 2 0 0 1-3.46 0" />,
-  },
-  {
-    title: "Live chat & routing",
-    body: "Visitors can message a rep directly from the widget. Conversations route to the right person's Slack DM automatically.",
-    icon: <path d="M21 15a2 2 0 0 1-2 2H8l-5 4V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />,
-  },
-  {
-    title: "Session replay",
-    body: "See exactly which pages a lead viewed, in what order, before your rep ever picks up the conversation.",
-    icon: <path d="M3 4h18v14H3zM3 8h18M8 4v4" />,
-  },
-  {
-    title: "Lead routing",
-    body: "Direct assignment, round robin, or a documented fallback rule — every qualified lead reaches the right rep automatically.",
+    title: "Ships with your existing stack",
+    body: "GitHub, GitLab, Slack, and Figma sync bidirectionally. Close an issue from a commit message.",
     icon: <path d="M17 3 21 7l-4 4M21 7H9a4 4 0 0 0-4 4v0 M7 21 3 17l4-4M3 17h12a4 4 0 0 0 4-4v0" />,
   },
   {
-    title: "CRM sync",
-    body: "Qualified leads and booked meetings push straight into HubSpot — no manual data entry after the fact.",
-    icon: <path d="M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" />,
+    title: "Automation for the busywork",
+    body: "Auto-assign, auto-label, auto-close stale issues. Rules you write once, in plain language.",
+    icon: <path d="M13 2 3 14h9l-1 8 10-12h-9z" />,
   },
   {
-    title: "Booking, built in",
-    body: "A visitor can grab time on a rep's calendar without ever leaving your site, straight from the widget.",
-    icon: <path d="M3 4h18v17H3zM3 9h18M8 2v4M16 2v4M7 13h4M7 17h7" />,
+    title: "Analytics that inform, not decorate",
+    body: "Cycle time, throughput, and bottlenecks — the numbers that actually change how you plan.",
+    icon: <path d="M3 3v18h18M8 17V9M13 17V5M18 17v-7" />,
   },
 ];
 
@@ -51,12 +39,12 @@ export function Features() {
     <section id="features" className="py-24 md:py-32">
       <Container>
         <div className="mx-auto max-w-2xl text-center">
-          <Eyebrow>Everything included</Eyebrow>
+          <Eyebrow>Product</Eyebrow>
           <h2 className="mt-4 font-display text-3xl font-800 leading-tight md:text-4xl">
-            The whole pipeline, not just identification
+            Everything your team needs. Nothing it doesn&apos;t.
           </h2>
         </div>
-        <div className="mt-16 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-16 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
           {FEATURES.map((f) => (
             <div key={f.title} className="bg-bg p-7">
               <svg

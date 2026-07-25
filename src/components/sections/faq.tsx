@@ -3,28 +3,28 @@ import { Eyebrow } from "../eyebrow";
 
 const FAQS = [
   {
-    q: "Do I need to change anything on my website?",
-    a: "No. You add one script tag. It renders in an isolated shadow DOM, so it can't be affected by your site's styles and can't affect them either.",
+    q: "Can I migrate from Jira or Linear?",
+    a: "Yes — importers for both preserve issue history, comments, and labels. Most teams are fully migrated in under an hour.",
   },
   {
-    q: "Does this identify individual people, or just companies?",
-    a: "Companies only. We deliberately never resolve a visitor to a named individual — no name, no personal email, no LinkedIn profile. That's a hard line in how the identify pipeline is built, not a setting you can turn off.",
+    q: "Does Ashlar work for non-engineering teams?",
+    a: "It's built for engineering workflows specifically — sprints, cycle time, code integrations. Support and design teams tend to be happier with something built for their own workflow.",
   },
   {
-    q: "Is this GDPR/CCPA compliant?",
-    a: "Visitors in a gated jurisdiction (EU, UK, and California today) are shown a consent gate before any identification happens, and it fails closed — if we can't tell where someone is, we treat them as gated by default.",
+    q: "Is there a limit on issues or projects?",
+    a: "No. Every plan, including free, has unlimited issues and projects. We charge per active teammate, not per ticket.",
   },
   {
-    q: "How fast are the Slack alerts, really?",
-    a: "Seconds from a qualifying visit to a message in your channel, not minutes and not a daily digest — that's the entire point.",
+    q: "What happens to our data if we cancel?",
+    a: "You can export everything — issues, comments, history — at any time, from any plan, with no waiting period.",
   },
   {
-    q: "I already use a tool like this — can I switch providers?",
-    a: "Identification is built behind a provider-agnostic interface specifically so this isn't a one-way door. Swapping providers is a configuration change, not a rebuild.",
+    q: "Do you have an API?",
+    a: "A full REST and webhook API, documented alongside everything else. See the docs for authentication and rate limits.",
   },
   {
-    q: "What happens to visitors who never show up as a match?",
-    a: "Nothing is fabricated. If we can't confidently identify a company, the session is honestly marked as unknown rather than guessed at.",
+    q: "Is there a self-hosted option?",
+    a: "Not today. Ashlar is cloud-only, which is most of how we keep sync and integrations reliable without you managing infrastructure.",
   },
 ];
 
