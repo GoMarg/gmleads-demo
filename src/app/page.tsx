@@ -3,6 +3,14 @@ import { Footer } from "@/components/footer";
 import { GmLeadsWidget } from "@/components/gmleads-widget";
 import { WidgetNudge } from "@/components/widget-nudge";
 import { Hero } from "@/components/sections/hero";
+import { CustomerLogos } from "@/components/sections/customer-logos";
+import { Features } from "@/components/sections/features";
+import { LiveDashboard } from "@/components/sections/live-dashboard";
+import { Install } from "@/components/sections/install";
+import { Integrations } from "@/components/sections/integrations";
+import { Testimonials } from "@/components/sections/testimonials";
+import { Faq } from "@/components/sections/faq";
+import { Cta } from "@/components/sections/cta";
 
 export default function Home() {
   return (
@@ -10,6 +18,14 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
+        <Install />
+        <CustomerLogos />
+        <Features />
+        <LiveDashboard />
+        <Integrations />
+        <Testimonials />
+        <Faq />
+        <Cta />
       </main>
       <Footer />
       <GmLeadsWidget />

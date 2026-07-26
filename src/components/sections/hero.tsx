@@ -2,38 +2,18 @@ import Link from "next/link";
 import { Container } from "../container";
 import { Eyebrow } from "../eyebrow";
 
-const STEPS = [
-  {
-    label: "Visitor arrives",
-    detail: "IP 203.0.113.42 seen on /pricing",
-    tag: "Identifying…",
-    icon: (
-      <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm0 0c2.5 2.7 4 6.2 4 10s-1.5 7.3-4 10M12 2C9.5 4.7 8 8.2 8 12s1.5 7.3 4 10M2.5 9h19M2.5 15h19" />
-    ),
-  },
-  {
-    label: "Company resolved",
-    detail: "Acme Inc. — SaaS, 340 employees",
-    tag: "ICP score 92",
-    icon: (
-      <path d="M3 21h18M6 21V7l6-4 6 4v14M9 9h1M14 9h1M9 13h1M14 13h1M9 17h1M14 17h1" />
-    ),
-  },
-  {
-    label: "Slack alert sent",
-    detail: "DM to #sales-leads: “Acme Inc. is on pricing right now”",
-    tag: "Routed instantly",
-    icon: (
-      <path d="M9 3a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2V5a2 2 0 0 0-2-2Zm0 6H5a2 2 0 1 0 0 4h4v-4Zm6-6a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2V5a2 2 0 0 1 2-2ZM9 15H7a2 2 0 1 0 0 4h2v-4Zm6 0h4a2 2 0 1 1 0 4h-4v-4Zm0-6h2a2 2 0 1 0 0-4h-2v4Zm-6 0v4h4V9Z" />
-    ),
-  },
-  {
-    label: "Lead captured",
-    detail: "jane@acme.com added to your pipeline",
-    tag: "No form filled",
-    icon: <path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />,
-  },
+const ISSUES = [
+  { id: "ENG-142", title: "Fix pagination on activity feed", priority: "high", label: "bug", assignee: "PR" },
+  { id: "ENG-138", title: "Ship roadmap read-only share links", priority: "medium", label: "feature", assignee: "TH" },
+  { id: "ENG-129", title: "Cycle burndown chart flickers on resize", priority: "low", label: "bug", assignee: "AW" },
+  { id: "ENG-121", title: "GitHub sync: close on squash-merge", priority: "high", label: "integration", assignee: "PR" },
 ];
+
+const PRIORITY_COLOR: Record<string, string> = {
+  high: "bg-accent",
+  medium: "bg-accent-2",
+  low: "bg-ink-faint",
+};
 
 export function Hero() {
   return (
@@ -48,15 +28,14 @@ export function Hero() {
       />
       <Container className="grid items-center gap-16 lg:grid-cols-[1.05fr_1fr]">
         <div className="text-center lg:text-left">
-          <Eyebrow>Live on this page</Eyebrow>
+          <Eyebrow>Now in v2</Eyebrow>
           <h1 className="mx-auto mt-4 max-w-xl font-display text-4xl font-800 leading-[1.05] md:text-6xl lg:mx-0">
-            You just got identified.
+            Project management that keeps up with how fast you ship.
           </h1>
           <p className="mx-auto mt-6 max-w-lg text-lg leading-relaxed text-ink-soft lg:mx-0">
-            Ashlar runs GmLeads on this exact page. The moment you landed
-            here, it resolved your IP to a company, scored it against our
-            ICP, and could have pinged our Slack &mdash; before you filled out
-            a single form.
+            Issue tracking, sprints, and roadmaps built for engineering
+            teams &mdash; fast enough that using it never feels like a tax
+            on shipping.
           </p>
           <div className="mt-9 flex flex-wrap items-center justify-center gap-4 lg:justify-start">
             <Link
@@ -72,11 +51,6 @@ export function Hero() {
               Read the docs
             </Link>
           </div>
-          <p className="mx-auto mt-5 flex max-w-lg items-center justify-center gap-2 text-xs text-ink-faint lg:mx-0 lg:justify-start">
-            <span aria-hidden>&#8594;</span>
-            That bubble in the bottom-right corner isn&apos;t a screenshot.
-            It&apos;s the real widget &mdash; click it.
-          </p>
         </div>
 
         <div className="relative mx-auto w-full max-w-md">
@@ -91,48 +65,41 @@ export function Hero() {
               <span className="h-2.5 w-2.5 rounded-full bg-ink-faint/40" />
               <span className="h-2.5 w-2.5 rounded-full bg-ink-faint/40" />
               <span className="ml-3 text-xs text-ink-faint">
-                gmleads &middot; identification pipeline
+                Cycle 14 &middot; Engineering
               </span>
             </div>
-            <ol className="divide-y divide-line-soft">
-              {STEPS.map((step, i) => (
-                <li key={step.label} className="flex items-start gap-3 px-4 py-4">
-                  <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-accent-soft text-accent">
-                    <svg
-                      className="h-4 w-4"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.8"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      {step.icon}
-                    </svg>
-                  </span>
+            <div className="border-b border-line-soft px-4 py-3">
+              <div className="flex items-center justify-between text-xs text-ink-faint">
+                <span>68% complete</span>
+                <span>6 days left</span>
+              </div>
+              <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-bg-inset">
+                <div className="h-full w-[68%] rounded-full bg-accent" />
+              </div>
+            </div>
+            <ul className="divide-y divide-line-soft">
+              {ISSUES.map((issue) => (
+                <li key={issue.id} className="flex items-center gap-3 px-4 py-3.5">
+                  <span
+                    aria-hidden
+                    className={`h-2 w-2 shrink-0 rounded-full ${PRIORITY_COLOR[issue.priority]}`}
+                  />
                   <div className="min-w-0 flex-1">
-                    <div className="flex items-center justify-between gap-2">
-                      <p className="text-sm font-700 text-ink">{step.label}</p>
-                      <span className="shrink-0 rounded-full bg-accent-soft px-2 py-0.5 text-[11px] font-semibold text-accent">
-                        {step.tag}
+                    <p className="truncate text-sm text-ink">{issue.title}</p>
+                    <div className="mt-1 flex items-center gap-2 text-[11px] text-ink-faint">
+                      <span className="font-mono">{issue.id}</span>
+                      <span className="rounded-full bg-bg-inset px-2 py-0.5">
+                        {issue.label}
                       </span>
                     </div>
-                    <p className="mt-1 text-xs leading-relaxed text-ink-soft">
-                      {step.detail}
-                    </p>
                   </div>
-                  {i < STEPS.length - 1 && (
-                    <span aria-hidden className="sr-only">
-                      then
-                    </span>
-                  )}
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent-soft text-[10px] font-semibold text-accent">
+                    {issue.assignee}
+                  </span>
                 </li>
               ))}
-            </ol>
+            </ul>
           </div>
-          <p className="mt-4 text-center text-xs text-ink-faint">
-            Illustrative &mdash; your real data, not a recording.
-          </p>
         </div>
       </Container>
     </section>
