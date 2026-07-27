@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Sora, IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
+import { DevToolsWrapper } from "@/components/dev-tools-wrapper";
 
 // Ashlar is a fictional company invented purely as a believable backdrop
 // for demonstrating GmLeads the way a real customer would experience it
@@ -29,9 +30,16 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const showDevTools =
+    process.env.NODE_ENV === "development" ||
+    process.env.NEXT_PUBLIC_SHOW_DEMO_CONTROLS === "true";
+
   return (
     <html lang="en" className={`${sora.variable} ${plexSans.variable}`}>
-      <body className="min-h-full antialiased">{children}</body>
+      <body className="min-h-full antialiased">
+        {children}
+        {showDevTools && <DevToolsWrapper />}
+      </body>
     </html>
   );
 }

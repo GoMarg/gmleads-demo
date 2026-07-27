@@ -7,10 +7,11 @@ import { Logo } from "./logo";
 
 const LINKS = [
   { href: "/#product", label: "Product" },
+  { href: "/#configure", label: "Try GmLeads", cta: true },
+  { href: "/live-demo", label: "Live Demo" },
   { href: "/pricing", label: "Pricing" },
   { href: "/docs", label: "Docs" },
   { href: "/blog", label: "Blog" },
-  { href: "/contact", label: "Contact" },
 ];
 
 export function Nav() {
@@ -42,7 +43,11 @@ export function Nav() {
         </Link>
         <nav className="hidden items-center gap-8 text-sm text-ink-soft md:flex">
           {LINKS.map((l) => (
-            <Link key={l.href} href={l.href} className="transition-colors hover:text-ink">
+            <Link
+              key={l.href}
+              href={l.href}
+              className={`transition-colors ${l.cta ? "text-accent hover:text-accent-2 font-semibold" : "hover:text-ink"}`}
+            >
               {l.label}
             </Link>
           ))}
