@@ -49,7 +49,7 @@ npm run dev
 
 | Var | Purpose |
 |---|---|
-| `NEXT_PUBLIC_WIDGET_URL` | The GmLeads widget script to embed. Defaults to the live Cloudflare Pages build (`gmleads-widget-production.pages.dev/widget.js`) if unset — the aspirational `cdn.gmleads.io` domain isn't provisioned yet. Change here, not in code, once it is. |
+| `NEXT_PUBLIC_WIDGET_URL` | **Optional.** The SDK has a built-in default (`gmleads-widget-production.pages.dev/widget.js`). Only set this to override for local development (e.g. `http://localhost:5173/widget.js`) or staging. |
 | `NEXT_PUBLIC_EMBED_KEY` | The embed key for the dedicated **GmLeads Demo** workspace (production) — a real workspace created specifically for this site, kept separate from any infrastructure-verification workspace. |
 
 ## Deployment
