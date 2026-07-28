@@ -5,7 +5,7 @@ import Link from "next/link";
 import { GmLeadsWidget } from "@/components/gmleads-widget";
 import type { DemoStatus } from "@/lib/widget-api";
 
-const EMBED_KEY = process.env.NEXT_PUBLIC_DEMO_EMBED_KEY ?? "";
+const EMBED_KEY = process.env.NEXT_PUBLIC_DEMO_EMBED_KEY ?? process.env.NEXT_PUBLIC_EMBED_KEY ?? "";
 
 // This is a dedicated live demo page that looks and feels like a real
 // SaaS business website, with the GmLeads widget already installed.
@@ -17,7 +17,7 @@ const EMBED_KEY = process.env.NEXT_PUBLIC_DEMO_EMBED_KEY ?? "";
 // The widget is the same production widget package customers receive.
 // The only difference is configuration — this page uses our demo workspace.
 
-const NAV_ITEMS = ["Product", "Pricing", "Integrations", "Docs"];
+const NAV_ITEMS = ["Features", "Testimonials"];
 
 const FEATURES = [
   {
@@ -41,12 +41,6 @@ const FEATURES = [
       <path d="M12 4.5C7 4.5 2.7 7.6 1 12c1.7 4.4 6 7.5 11 7.5s9.3-3.1 11-7.5c-1.7-4.4-6-7.5-11-7.5Zm0 12a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9Z" />
     ),
   },
-];
-
-const PRICING_PLANS = [
-  { name: "Starter", price: "$0", features: ["Up to 1k visitors/mo", "1 seat", "Email alerts"] },
-  { name: "Growth", price: "$99", features: ["Up to 50k visitors/mo", "5 seats", "Slack alerts", "CRM sync"], popular: true },
-  { name: "Enterprise", price: "Custom", features: ["Unlimited visitors", "SSO + SLA", "Dedicated CSM", "Custom integrations"] },
 ];
 
 const TESTIMONIALS = [
@@ -78,9 +72,13 @@ export function DemoWebsite() {
           </Link>
           <nav className="hidden items-center gap-8 text-sm text-ink-soft md:flex">
             {NAV_ITEMS.map((item) => (
-              <span key={item} className="cursor-default transition-colors hover:text-ink">
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className="transition-colors hover:text-ink"
+              >
                 {item}
-              </span>
+              </a>
             ))}
           </nav>
           <button
@@ -154,7 +152,7 @@ export function DemoWebsite() {
         </section>
 
         {/* Features */}
-        <section className="border-t border-line-soft py-20 md:py-28">
+        <section id="features" className="border-t border-line-soft py-20 md:py-28">
           <div className="mx-auto max-w-6xl px-6">
             <div className="mx-auto max-w-2xl text-center">
               <h2 className="font-display text-3xl font-800 leading-tight md:text-4xl">
@@ -178,60 +176,8 @@ export function DemoWebsite() {
           </div>
         </section>
 
-        {/* Pricing */}
-        <section className="border-t border-line-soft py-20 md:py-28">
-          <div className="mx-auto max-w-6xl px-6">
-            <div className="mx-auto max-w-2xl text-center">
-              <h2 className="font-display text-3xl font-800 leading-tight md:text-4xl">
-                Simple, transparent pricing
-              </h2>
-              <p className="mt-4 text-lg text-ink-soft">
-                No hidden fees. No per-seat surprises.
-              </p>
-            </div>
-            <div className="mt-14 grid gap-6 md:grid-cols-3 mx-auto max-w-4xl">
-              {PRICING_PLANS.map((plan) => (
-                <div
-                  key={plan.name}
-                  className={`flex flex-col rounded-2xl border p-8 ${
-                    plan.popular ? "border-accent bg-bg-raised" : "border-line bg-bg-raised/50"
-                  }`}
-                >
-                  {plan.popular && (
-                    <span className="mb-4 inline-flex w-fit rounded-full bg-accent-soft px-3 py-1 text-xs font-semibold text-accent-2">
-                      Most popular
-                    </span>
-                  )}
-                  <h2 className="font-display text-xl font-700">{plan.name}</h2>
-                  <div className="mt-4 flex items-baseline gap-1">
-                    <span className="font-display text-4xl font-800">{plan.price}</span>
-                    {plan.price !== "Custom" && (
-                      <span className="text-sm text-ink-faint">/mo</span>
-                    )}
-                  </div>
-                  <ul className="mt-8 flex-1 space-y-3">
-                    {plan.features.map((f) => (
-                      <li key={f} className="flex items-start gap-2 text-sm text-ink-soft">
-                        <svg className="mt-0.5 h-4 w-4 shrink-0 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M20 6 9 17l-5-5" />
-                        </svg>
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-                  <span className={`mt-8 block rounded-lg px-5 py-3 text-center text-sm font-semibold ${
-                    plan.popular ? "bg-accent text-accent-ink" : "border border-line text-ink"
-                  } transition-opacity hover:opacity-90 cursor-pointer`}>
-                    {plan.price === "$0" ? "Get started" : plan.price === "Custom" ? "Contact sales" : "Start trial"}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* Testimonials */}
-        <section className="border-t border-line-soft py-20 md:py-28">
+        <section id="testimonials" className="border-t border-line-soft py-20 md:py-28">
           <div className="mx-auto max-w-6xl px-6">
             <div className="mx-auto max-w-2xl text-center">
               <h2 className="font-display text-3xl font-800 leading-tight md:text-4xl">
@@ -282,7 +228,7 @@ export function DemoWebsite() {
       </main>
 
       {/* The real GmLeads widget — same package customers receive */}
-      <GmLeadsWidget embedKey={EMBED_KEY} />
+      <GmLeadsWidget embedKey={EMBED_KEY} accentColor="#3b82f6" />
     </div>
   );
 }

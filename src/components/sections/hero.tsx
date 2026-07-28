@@ -1,107 +1,186 @@
-import Link from "next/link";
-import { Container } from "../container";
-import { Eyebrow } from "../eyebrow";
+"use client";
 
-const ISSUES = [
-  { id: "ENG-142", title: "Fix pagination on activity feed", priority: "high", label: "bug", assignee: "PR" },
-  { id: "ENG-138", title: "Ship roadmap read-only share links", priority: "medium", label: "feature", assignee: "TH" },
-  { id: "ENG-129", title: "Cycle burndown chart flickers on resize", priority: "low", label: "bug", assignee: "AW" },
-  { id: "ENG-121", title: "GitHub sync: close on squash-merge", priority: "high", label: "integration", assignee: "PR" },
-];
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { GmLeadsWidget } from "@/components/gmleads-widget";
 
-const PRIORITY_COLOR: Record<string, string> = {
-  high: "bg-accent",
-  medium: "bg-accent-2",
-  low: "bg-ink-faint",
-};
+function StatusDot() {
+  return (
+    <span className="relative flex h-2 w-2">
+      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-500 opacity-75" />
+      <span className="relative inline-flex h-2 w-2 rounded-full bg-blue-500" />
+    </span>
+  );
+}
 
 export function Hero() {
-  return (
-    <section id="product" className="relative overflow-hidden pt-24 pb-24 md:pt-32 md:pb-32">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[600px] opacity-30"
-        style={{
-          background:
-            "radial-gradient(560px 320px at 50% -8%, var(--accent-soft), transparent 70%)",
-        }}
-      />
-      <Container className="grid items-center gap-16 lg:grid-cols-[1.05fr_1fr]">
-        <div className="text-center lg:text-left">
-          <Eyebrow>Now in v2</Eyebrow>
-          <h1 className="mx-auto mt-4 max-w-xl font-display text-4xl font-800 leading-[1.05] md:text-6xl lg:mx-0">
-            Project management that keeps up with how fast you ship.
-          </h1>
-          <p className="mx-auto mt-6 max-w-lg text-lg leading-relaxed text-ink-soft lg:mx-0">
-            Issue tracking, sprints, and roadmaps built for engineering
-            teams &mdash; fast enough that using it never feels like a tax
-            on shipping.
-          </p>
-          <div className="mt-9 flex flex-wrap items-center justify-center gap-4 lg:justify-start">
-            <Link
-              href="/pricing"
-              className="rounded-lg bg-accent px-6 py-3 text-sm font-semibold text-accent-ink transition-transform hover:scale-[1.02]"
-            >
-              Start for free
-            </Link>
-            <Link
-              href="/docs"
-              className="rounded-lg border border-line px-6 py-3 text-sm font-semibold text-ink transition-colors hover:border-ink-faint"
-            >
-              Read the docs
-            </Link>
-          </div>
-        </div>
+  const [stats, setStats] = useState({
+    visitors: 1,
+    leads: 0,
+    latency: 18,
+  });
 
-        <div className="relative mx-auto w-full max-w-md">
-          <div
-            aria-hidden
-            className="pointer-events-none absolute -inset-6 -z-10 rounded-[28px] opacity-60 blur-2xl"
-            style={{ background: "var(--accent-soft)" }}
-          />
-          <div className="overflow-hidden rounded-2xl border border-line bg-bg-raised shadow-2xl">
-            <div className="flex items-center gap-1.5 border-b border-line-soft px-4 py-3">
-              <span className="h-2.5 w-2.5 rounded-full bg-ink-faint/40" />
-              <span className="h-2.5 w-2.5 rounded-full bg-ink-faint/40" />
-              <span className="h-2.5 w-2.5 rounded-full bg-ink-faint/40" />
-              <span className="ml-3 text-xs text-ink-faint">
-                Cycle 14 &middot; Engineering
-              </span>
-            </div>
-            <div className="border-b border-line-soft px-4 py-3">
-              <div className="flex items-center justify-between text-xs text-ink-faint">
-                <span>68% complete</span>
-                <span>6 days left</span>
-              </div>
-              <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-bg-inset">
-                <div className="h-full w-[68%] rounded-full bg-accent" />
-              </div>
-            </div>
-            <ul className="divide-y divide-line-soft">
-              {ISSUES.map((issue) => (
-                <li key={issue.id} className="flex items-center gap-3 px-4 py-3.5">
-                  <span
-                    aria-hidden
-                    className={`h-2 w-2 shrink-0 rounded-full ${PRIORITY_COLOR[issue.priority]}`}
-                  />
-                  <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm text-ink">{issue.title}</p>
-                    <div className="mt-1 flex items-center gap-2 text-[11px] text-ink-faint">
-                      <span className="font-mono">{issue.id}</span>
-                      <span className="rounded-full bg-bg-inset px-2 py-0.5">
-                        {issue.label}
-                      </span>
-                    </div>
-                  </div>
-                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent-soft text-[10px] font-semibold text-accent">
-                    {issue.assignee}
-                  </span>
-                </li>
-              ))}
-            </ul>
+  // Simulate live stats updates
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setStats((prev) => ({
+        visitors: prev.visitors + Math.floor(Math.random() * 2),
+        leads: prev.leads + (Math.random() > 0.7 ? 1 : 0),
+        latency: 15 + Math.floor(Math.random() * 10),
+      }));
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-black">
+      {/* Subtle gradient */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute left-1/2 top-0 h-[600px] w-[600px] -translate-x-1/2 bg-blue-500/10 blur-[120px]" />
+      </div>
+
+      {/* Embed demo widget with real key */}
+      <GmLeadsWidget embedKey={process.env.NEXT_PUBLIC_EMBED_KEY || "gml_ccf85773339f942de0d7f68e406b713e9f52dda09d22f135"} />
+
+      <div className="relative mx-auto max-w-7xl px-6 py-32">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="max-w-3xl"
+        >
+          {/* Label */}
+          <div className="flex items-center gap-2 mb-6">
+            <StatusDot />
+            <span className="text-xs font-medium text-white/40 uppercase tracking-widest">
+              Now in Public Beta
+            </span>
           </div>
-        </div>
-      </Container>
+
+          {/* Headline */}
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white leading-[1.05]">
+            Know every company
+            <br />
+            <span className="bg-gradient-to-r from-blue-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
+              visiting your site.
+            </span>
+          </h1>
+
+          {/* Subtitle */}
+          <p className="mt-6 text-lg md:text-xl text-white/50 max-w-xl leading-relaxed">
+            The lightweight SDK that identifies anonymous visitors, qualifies leads, 
+            and sends them to Slack — no forms required.
+          </p>
+
+          {/* CTAs */}
+          <div className="mt-10 flex items-center gap-4">
+            <a
+              href="#sdk"
+              className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition-all hover:scale-[1.02] active:scale-[0.98]"
+            >
+              Get Started
+            </a>
+            <a
+              href="#docs"
+              className="rounded-full border border-white/10 px-6 py-3 text-sm font-medium text-white/70 transition-all hover:border-white/20 hover:text-white/90"
+            >
+              Documentation
+            </a>
+          </div>
+
+          {/* Trust indicators */}
+          <div className="mt-8 flex flex-wrap items-center gap-6 text-xs text-white/40">
+            <div className="flex items-center gap-2">
+              <svg className="h-4 w-4 text-green-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path d="M20 6L9 17l-5-5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              <span>TypeScript Ready</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <svg className="h-4 w-4 text-green-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path d="M20 6L9 17l-5-5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              <span>MIT License</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <svg className="h-4 w-4 text-green-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path d="M20 6L9 17l-5-5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              <span>Edge Compatible</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <svg className="h-4 w-4 text-green-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path d="M20 6L9 17l-5-5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              <span>{'<10KB gzipped'}</span>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Video demo */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="mt-16 max-w-3xl"
+        >
+          <div className="relative rounded-2xl border border-white/[0.06] bg-white/[0.02] overflow-hidden shadow-2xl">
+            <div className="aspect-video flex items-center justify-center">
+              <button className="group flex items-center gap-3 rounded-full bg-white/10 px-6 py-3 backdrop-blur-sm transition-all hover:bg-white/20">
+                <svg className="h-6 w-6 text-white" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+                <span className="text-sm font-medium text-white">Watch 2-minute demo</span>
+              </button>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Floating status card */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mt-8 max-w-sm"
+        >
+          <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-5">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-2">
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-500/20 text-blue-400 text-xs font-bold">
+                  {'</>'}
+                </div>
+                <div>
+                  <div className="text-sm font-medium text-white">GmLeads SDK</div>
+                  <div className="text-xs text-white/40">v2.1.0</div>
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse" />
+                <span className="text-xs text-green-400 font-medium">Connected</span>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-3">
+              <div className="rounded-lg bg-white/[0.02] p-3">
+                <div className="text-xs text-white/40 mb-1">Visitor detected</div>
+                <div className="text-lg font-semibold text-white">{stats.visitors}</div>
+              </div>
+              <div className="rounded-lg bg-white/[0.02] p-3">
+                <div className="text-xs text-white/40 mb-1">Lead Qualified</div>
+                <div className="text-lg font-semibold text-white">{stats.leads}</div>
+              </div>
+              <div className="rounded-lg bg-white/[0.02] p-3">
+                <div className="text-xs text-white/40 mb-1">Latency</div>
+                <div className="text-lg font-semibold text-white">{stats.latency}ms</div>
+              </div>
+              <div className="rounded-lg bg-white/[0.02] p-3">
+                <div className="text-xs text-white/40 mb-1">Environment</div>
+                <div className="text-lg font-semibold text-white">Production</div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </div>
     </section>
   );
 }

@@ -2,11 +2,9 @@ import type { Metadata } from "next";
 import { Sora, IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
 import { DevToolsWrapper } from "@/components/dev-tools-wrapper";
+import { Nav } from "@/components/nav";
+import { GmLeadsInitializer } from "@/components/GmLeadsInitializer";
 
-// Ashlar is a fictional company invented purely as a believable backdrop
-// for demonstrating GmLeads the way a real customer would experience it
-// — see README.md. Its own type identity, deliberately distinct from the
-// gmleads-demo site this repo replaced (Manrope/Inter, coral accent).
 const sora = Sora({
   variable: "--font-display",
   subsets: ["latin"],
@@ -20,9 +18,9 @@ const plexSans = IBM_Plex_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Ashlar — The workspace for teams who ship",
+  title: "GmLeads — Identify your website visitors in real-time",
   description:
-    "Issue tracking, sprints, and release workflows built for engineering teams who'd rather be shipping than managing tickets.",
+    "Drop a single <script> tag and start identifying your website visitors, routing leads to Slack, and capturing conversations — no forms required.",
 };
 
 export default function RootLayout({
@@ -37,6 +35,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${sora.variable} ${plexSans.variable}`}>
       <body className="min-h-full antialiased">
+        <GmLeadsInitializer />
+        <Nav />
         {children}
         {showDevTools && <DevToolsWrapper />}
       </body>

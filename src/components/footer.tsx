@@ -6,24 +6,26 @@ const COLUMNS = [
   {
     title: "Product",
     links: [
-      { href: "/#product", label: "Issue tracking" },
-      { href: "/#product", label: "Sprints" },
-      { href: "/#product", label: "Roadmaps" },
-      { href: "/pricing", label: "Pricing" },
+      { href: "/#how-it-works", label: "How it Works" },
+      { href: "/#configure", label: "Get Started" },
+      { href: "/live-demo", label: "Live Demo" },
+      { href: "/docs", label: "Documentation" },
+    ],
+  },
+  {
+    title: "Developers",
+    links: [
+      { href: "/docs", label: "SDK Reference" },
+      { href: "/docs", label: "API Reference" },
+      { href: "/docs", label: "Changelog" },
     ],
   },
   {
     title: "Resources",
     links: [
-      { href: "/docs", label: "Documentation" },
+      { href: "/docs", label: "Installation Guide" },
       { href: "/blog", label: "Blog" },
-    ],
-  },
-  {
-    title: "Company",
-    links: [
       { href: "/contact", label: "Contact" },
-      { href: "/docs", label: "Support" },
     ],
   },
 ];
@@ -36,10 +38,10 @@ export function Footer() {
           <div>
             <div className="flex items-center gap-2">
               <Logo />
-              <span className="font-display text-base font-700">Ashlar</span>
+              <span className="font-display text-base font-700">GmLeads</span>
             </div>
             <p className="mt-3 max-w-[220px] text-sm leading-relaxed text-ink-faint">
-              The workspace for teams who ship.
+              Website visitor identification. One line of code.
             </p>
           </div>
           {COLUMNS.map((col) => (
@@ -60,7 +62,7 @@ export function Footer() {
           ))}
         </div>
         <div className="mt-14 border-t border-line-soft pt-8 text-sm text-ink-faint">
-          &copy; {new Date().getFullYear()} Ashlar, Inc.
+          &copy; {new Date().getFullYear()} GmLeads, Inc.
         </div>
       </Container>
     </footer>
