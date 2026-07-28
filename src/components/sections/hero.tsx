@@ -151,7 +151,7 @@ export function Hero() {
                 </div>
                 <div>
                   <div className="text-sm font-medium text-white">GmLeads SDK</div>
-                  <div className="text-xs text-white/40">v2.1.0</div>
+                  <div className="text-xs text-white/40">v2.1.1</div>
                 </div>
               </div>
               <div className="flex items-center gap-2">
