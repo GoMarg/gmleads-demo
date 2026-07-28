@@ -10,22 +10,22 @@ const DEMO_KEY = "gml_ccf85773339f942de0d7f68e406b713e9f52dda09d22f135";
 
 const CODE: Record<Framework, string> = {
   "Next.js": `# Install
-npm install @gmleads/sdk
+npm install @gomarg/sdk
 
 # .env.local
 NEXT_PUBLIC_GMLEADS_KEY=${DEMO_KEY}
 
 # app/layout.tsx
-import { GmLeads } from '@gmleads/sdk'
+import { GmLeads } from '@gomarg/sdk'
 
 GmLeads.init({
   key: process.env.NEXT_PUBLIC_GMLEADS_KEY
 })`,
   "React": `# Install
-npm install @gmleads/sdk
+npm install @gomarg/sdk
 
 # App.tsx
-import { GmLeads } from '@gmleads/sdk'
+import { GmLeads } from '@gomarg/sdk'
 
 function App() {
   useEffect(() => {
@@ -40,11 +40,11 @@ function App() {
   async
 ></script>`,
   "Vue": `# Install
-npm install @gmleads/sdk
+npm install @gomarg/sdk
 
 # main.ts
 import { createApp } from 'vue'
-import { GmLeads } from '@gmleads/sdk'
+import { GmLeads } from '@gomarg/sdk'
 import App from './App.vue'
 
 const app = createApp(App)

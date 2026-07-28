@@ -1,13 +1,13 @@
 'use client';
 
 import { useEffect } from 'react';
-import { GmLeads } from '@gmleads/sdk';
+import { GmLeads } from '@gomarg/sdk';
 
 export function GmLeadsInitializer() {
   useEffect(() => {
     GmLeads.init({
-      key: 'gml_demo_test_key_xyz', // Demo key
-      accentColor: '#3b82f6', // Matching blue theme of the demo maybe, or any distinct color
+      key: process.env.NEXT_PUBLIC_DEMO_EMBED_KEY || 'gml_demo_test_key_xyz',
+      accentColor: '#3b82f6',
     });
 
     return () => {
