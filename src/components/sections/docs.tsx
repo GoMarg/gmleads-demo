@@ -6,11 +6,8 @@ import { motion } from "framer-motion";
 const TABS = ["SDK Methods", "Events", "Webhooks", "API Reference"];
 const TAB_CONTENT: Record<string, { description: string; code: string }> = {
   "SDK Methods": {
-    description: "Initialize the SDK, identify visitors, and track events with a simple, typed API.",
+    description: "Initialize the SDK and manage the widget lifecycle with a simple, typed API.",
     code: `GmLeads.init({ key: 'gml_ccf85773339f942de0d7f68e406b713e9f52dda09d22f135' })
-GmLeads.identify({ email, company })
-GmLeads.track('page_view', { url })
-GmLeads.on('lead', callback)
 GmLeads.destroy()`,
   },
   "Events": {
