@@ -3,7 +3,6 @@ import { Sora, IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
 import { DevToolsWrapper } from "@/components/dev-tools-wrapper";
 import { Nav } from "@/components/nav";
-import { GmLeadsInitializer } from "@/components/GmLeadsInitializer";
 
 const sora = Sora({
   variable: "--font-display",
@@ -35,7 +34,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${sora.variable} ${plexSans.variable}`}>
       <body className="min-h-full antialiased">
-        <GmLeadsInitializer />
         <Nav />
         {children}
         {showDevTools && <DevToolsWrapper />}
