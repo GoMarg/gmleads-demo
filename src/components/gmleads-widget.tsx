@@ -11,9 +11,10 @@ const DEFAULT_EMBED_KEY = process.env.NEXT_PUBLIC_EMBED_KEY ?? "";
 interface GmLeadsWidgetProps {
   embedKey?: string;
   accentColor?: string;
+  label?: string;
 }
 
-export function GmLeadsWidget({ embedKey, accentColor }: GmLeadsWidgetProps) {
+export function GmLeadsWidget({ embedKey, accentColor, label }: GmLeadsWidgetProps) {
   const resolvedKey = embedKey ?? DEFAULT_EMBED_KEY;
   const resolvedColor = accentColor ?? "#3b82f6";
   const destroyRef = useRef<() => void>(null);
@@ -31,7 +32,7 @@ export function GmLeadsWidget({ embedKey, accentColor }: GmLeadsWidgetProps) {
 
     const w = window as unknown as {
       GmLeads?: {
-        init: (config: { key: string; accentColor?: string }) => void;
+        init: (config: { key: string; accentColor?: string; label?: string }) => void;
         destroy: () => void;
         version: string;
       };
@@ -39,7 +40,7 @@ export function GmLeadsWidget({ embedKey, accentColor }: GmLeadsWidgetProps) {
 
     if (w.GmLeads) {
       w.GmLeads.destroy();
-      w.GmLeads.init({ key: embedKey, accentColor: resolvedColor });
+      w.GmLeads.init({ key: embedKey, accentColor: resolvedColor, label });
       destroyRef.current = () => {
         if (w.GmLeads) w.GmLeads.destroy();
       };
@@ -48,6 +49,7 @@ export function GmLeadsWidget({ embedKey, accentColor }: GmLeadsWidgetProps) {
       script.src = WIDGET_URL;
       script.setAttribute("data-key", embedKey);
       script.setAttribute("data-accent-color", resolvedColor);
+      if (label) script.setAttribute("data-label", label);
       script.async = true;
       document.body.appendChild(script);
 
@@ -64,7 +66,7 @@ export function GmLeadsWidget({ embedKey, accentColor }: GmLeadsWidgetProps) {
       }
       initedRef.current = false;
     };
-  }, [embedKey, resolvedColor, resolvedKey]);
+  }, [embedKey, resolvedColor, resolvedKey, label]);
 
   // Static embed from env var — handled via Standard Script approach.
   if (!embedKey && resolvedKey) {
@@ -73,6 +75,7 @@ export function GmLeadsWidget({ embedKey, accentColor }: GmLeadsWidgetProps) {
         src={WIDGET_URL}
         data-key={resolvedKey}
         data-accent-color={resolvedColor}
+        data-label={label}
         strategy="afterInteractive"
         async
       />

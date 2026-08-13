@@ -228,7 +228,7 @@ export function DemoWebsite() {
       </main>
 
       {/* The real GmLeads widget — same package customers receive */}
-      <GmLeadsWidget embedKey={EMBED_KEY} accentColor="#3b82f6" />
+      <GmLeadsWidget embedKey={EMBED_KEY} accentColor="#3b82f6" label="Chat with Gridflow" />
     </div>
   );
 }
